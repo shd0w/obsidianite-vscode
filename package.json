@@ -1,0 +1,29 @@
+{
+  "name": "obsidianite-vscode",
+  "displayName": "Obsidianite",
+  "description": "Faithful Obsidianite theme port for VSCode",
+  "version": "1.0.0",
+  "publisher": "shd0w",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shd0w/obsidianite-vscode"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Themes"],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Obsidianite",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Obsidianite-color-theme.json"
+      },
+      {
+        "label": "Obsidianite AMOLED",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Obsidianite-amoled-color-theme.json"
+      }
+    ]
+  }
+}
