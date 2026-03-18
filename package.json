@@ -2,8 +2,9 @@
   "name": "obsidianite-vscode",
   "displayName": "Obsidianite",
   "description": "Faithful Obsidianite theme port for VSCode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "shd0w",
+  "icon": "icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/shd0w/obsidianite-vscode"

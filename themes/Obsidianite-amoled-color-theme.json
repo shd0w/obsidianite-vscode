@@ -204,7 +204,12 @@
     "symbolIcon.structForeground": "#66d9ef",
     "symbolIcon.eventForeground": "#ff79c6",
     "symbolIcon.operatorForeground": "#ff79c6",
-    "symbolIcon.typeParameterForeground": "#66d9ef"
+    "symbolIcon.typeParameterForeground": "#66d9ef",
+    "commandCenter.foreground": "#bebebe",
+    "commandCenter.activeForeground": "#0fb6d6",
+    "commandCenter.activeBackground": "#0ed2f710",
+    "commandCenter.background": "#0d0b12",
+    "commandCenter.border": "#0ed2f720"
   },
   "tokenColors": [
     {
