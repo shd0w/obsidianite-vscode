@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Obsidianite Facets: six VS Code and terminal themes from one named palette, with live previews.">
+<title>Obsidianite Facets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: one column, the page itself wears the selected flavor; mockups first, palette and rules after. */
+:root {
+  /* Obsidian flavor as the resting palette; JS swaps these per flavor */
+  --garnet:#fe8292; --tourmaline:#fe7cb1; --kunzite:#eea7f2; --amethyst:#bb9af7;
+  --iolite:#99a6fe; --sapphire:#85acfe; --topaz:#5abaea; --aquamarine:#2ac1e1;
+  --jade:#25cc8f; --peridot:#7cd557; --citrine:#e7b210; --carnelian:#f0aa5e;
+  --text:#dbd9e4; --muted1:#bbb9c4; --muted0:#a5a3ae; --veil2:#848092; --veil1:#6d697a; --veil0:#595565;
+  --layer2:#363342; --layer1:#2b2836; --layer0:#201d2a; --base:#100e17; --shade:#0c0915; --abyss:#07050f;
+
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Figtree", "Helvetica Neue", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--base); color: var(--text);
+  font: 400 16px/1.6 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  transition: background .35s ease, color .35s ease;
+}
+@media (prefers-reduced-motion: reduce) { body, * { transition: none !important; } }
+.wrap { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px; padding-block: 48px 96px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+.eyebrow { font: 600 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--veil2); }
+.lede { color: var(--muted1); max-width: 62ch; font-size: 18px; }
+section { display: flex; flex-direction: column; gap: 24px; }
+.section-head { display: flex; flex-direction: column; gap: 8px; }
+.section-head h2 { font-size: clamp(26px, 3.4vw, 36px); font-weight: 700; }
+.section-head p { color: var(--muted0); max-width: 64ch; }
+
+/* ---------- hero ---------- */
+.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: end; }
+.hero h1 { font-size: clamp(44px, 7.4vw, 92px); font-weight: 800; line-height: .95; }
+.hero h1 .facet {
+  background: linear-gradient(62deg, var(--aquamarine) 0%, var(--sapphire) 45%, var(--kunzite) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero-copy { display: flex; flex-direction: column; gap: 20px; }
+.flavors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.flavor-btn .gem { outline: 1px solid var(--layer2); }
+.flavor-btn {
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px;
+  background: var(--shade); border: 1px solid var(--layer1); color: var(--text);
+  font: 500 15px/1.2 var(--body); text-align: left; cursor: pointer;
+}
+.flavor-btn:hover { border-color: var(--veil0); }
+.flavor-btn:focus-visible { outline: 2px solid var(--aquamarine); outline-offset: 2px; }
+.flavor-btn[aria-pressed="true"] { border-color: var(--aquamarine); background: var(--layer0); }
+.flavor-btn small { display: block; color: var(--veil2); font: 400 12px/1.3 var(--mono); margin-top: 3px; }
+.gem { width: 30px; height: 30px; flex: none; clip-path: polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%); }
+
+/* ---------- mockup chrome ---------- */
+.window { border-radius: 12px; overflow: hidden; border: 1px solid var(--layer1); background: var(--base); box-shadow: 0 30px 60px -30px #00000088; min-width: 0; }
+.titlebar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: var(--abyss); color: var(--veil2); font: 12px/1 var(--mono); }
+.dots { display: flex; gap: 7px; margin-right: 8px; }
+.dots i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+.dots i:nth-child(1) { background: var(--garnet); } .dots i:nth-child(2) { background: var(--citrine); } .dots i:nth-child(3) { background: var(--peridot); }
+.titlebar .center { flex: 1; text-align: center; padding-right: 60px; }
+
+/* VS Code */
+.vsc { display: grid; grid-template-columns: 46px 220px minmax(0, 1fr); min-height: 440px; }
+.activity { background: var(--abyss); display: flex; flex-direction: column; align-items: center; gap: 18px; padding-top: 14px; }
+.activity span { width: 20px; height: 20px; border-radius: 5px; border: 2px solid var(--veil0); }
+.activity span.on { border-color: var(--aquamarine); }
+.sidebar { background: var(--shade); padding: 12px 0; font: 13px/1.9 var(--body); color: var(--muted0); min-width: 0; }
+.sidebar .h { font: 600 11px/1 var(--mono); letter-spacing: .1em; color: var(--veil2); padding: 4px 16px 10px; }
+.sidebar .row { padding: 0 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sidebar .row.ind { padding-left: 30px; }
+.sidebar .row.sel { background: color-mix(in srgb, var(--aquamarine) 16%, transparent); color: var(--text); }
+.sidebar .mod { color: var(--citrine); } .sidebar .add { color: var(--peridot); } .sidebar .dir { color: var(--text); }
+.editor { display: flex; flex-direction: column; min-width: 0; }
+.tabs { display: flex; background: var(--abyss); font: 13px/1 var(--body); overflow: hidden; }
+.tab { padding: 11px 16px; color: var(--veil2); border-top: 2px solid transparent; white-space: nowrap; }
+.tab.on { background: var(--base); color: var(--text); border-top-color: var(--aquamarine); }
+.tab .dot { color: var(--tourmaline); margin-left: 6px; }
+.crumbs { padding: 6px 16px; font: 12px/1.4 var(--body); color: var(--veil2); }
+.crumbs b { color: var(--muted1); font-weight: 500; }
+.code { flex: 1; overflow-x: auto; padding: 4px 0 14px; }
+.code pre { margin: 0; font: 13.5px/1.75 var(--mono); font-variant-ligatures: none; }
+.ln { display: flex; min-width: max-content; }
+.ln .no { width: 48px; flex: none; text-align: right; padding-right: 18px; color: var(--veil0); user-select: none; }
+.ln.cur { background: var(--layer0); }
+.ln.cur .no { color: var(--muted1); }
+.sel-txt { background: color-mix(in srgb, var(--sapphire) 30%, transparent); border-radius: 2px; }
+.statusbar { display: flex; gap: 18px; align-items: center; padding: 5px 12px; background: var(--abyss); color: var(--veil2); font: 12px/1.4 var(--body); flex-wrap: wrap; }
+.statusbar .branch { color: var(--aquamarine); }
+.statusbar .err { color: var(--garnet); } .statusbar .warn { color: var(--citrine); }
+.statusbar .push { margin-left: auto; }
+
+/* syntax classes */
+.k { color: var(--tourmaline); } .f { color: var(--sapphire); } .s { color: var(--jade); }
+.n { color: var(--carnelian); } .t { color: var(--citrine); } .p { color: var(--amethyst); font-style: italic; }
+.pr { color: var(--topaz); } .c { color: var(--veil1); font-style: italic; } .o { color: var(--aquamarine); }
+.pu { color: var(--muted0); } .v { color: var(--text); } .d { color: var(--kunzite); font-style: italic; }
+.e { color: var(--kunzite); } .b { color: var(--iolite); } .l { color: var(--garnet); font-style: italic; }
+.squig { text-decoration: underline wavy var(--garnet); text-underline-offset: 3px; }
+.hint { color: var(--veil1); background: var(--layer0); border-radius: 4px; padding: 0 5px; font-size: 12px; }
+
+/* terminal + note row */
+.duo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
+.term pre { font-variant-ligatures: none; margin: 0; padding: 16px 18px 20px; font: 13px/1.7 var(--mono); overflow-x: auto; color: var(--text); }
+.cursor { display: inline-block; width: .6em; height: 1.15em; vertical-align: -3px; background: var(--aquamarine); }
+@media (prefers-reduced-motion: no-preference) { .cursor { animation: blink 1.1s steps(1) infinite; } }
+@keyframes blink { 50% { opacity: 0; } }
+
+.note { padding: 26px 30px 30px; display: flex; flex-direction: column; gap: 14px; font: 15.5px/1.65 var(--body); }
+.note h3.n1 { font: 700 30px/1.15 var(--body); color: var(--aquamarine); }
+.note h3.n2 { font: 600 21px/1.3 var(--body); color: var(--text); padding-bottom: 6px;
+  border-bottom: 2px solid; border-image: linear-gradient(to right, var(--tourmaline), transparent 70%) 1; }
+.note .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.note .tag { font: 500 12.5px/1 var(--body); padding: 6px 10px; border-radius: 999px; color: var(--aquamarine); background: color-mix(in srgb, var(--aquamarine) 15%, transparent); }
+.note .tag.todo { color: var(--tourmaline); background: color-mix(in srgb, var(--tourmaline) 15%, transparent); }
+.note .tag.idea { color: var(--citrine); background: color-mix(in srgb, var(--citrine) 15%, transparent); }
+.note strong { background: linear-gradient(62deg, var(--sapphire), var(--kunzite)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.note em { color: var(--amethyst); }
+.note code { font: 13.5px var(--mono); color: var(--aquamarine); background: color-mix(in srgb, var(--aquamarine) 8%, transparent); padding: 1px 6px; border-radius: 4px; }
+.note mark { background: color-mix(in srgb, var(--tourmaline) 26%, transparent); color: var(--text); padding: 0 3px; border-radius: 3px; }
+.note a { color: var(--text); text-decoration: none; background: linear-gradient(var(--aquamarine), var(--aquamarine)) 0 100% / 100% 1.5px no-repeat; }
+.note blockquote { margin: 0; padding: 4px 0 4px 16px; border-left: 3px solid var(--topaz); color: var(--muted0); font-style: italic; }
+.note ul { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.note li { display: flex; gap: 10px; align-items: baseline; }
+.box { width: 15px; height: 15px; border-radius: 4px; border: 1.5px solid var(--veil1); flex: none; transform: translateY(2px); }
+.box.done { background: var(--aquamarine); border-color: var(--aquamarine); }
+.note li.done span:last-child { color: var(--veil2); text-decoration: line-through; }
+
+/* palette */
+.swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+.sw { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.sw .chip { height: 72px; border-radius: 10px; clip-path: polygon(0 0, 88% 0, 100% 22%, 100% 100%, 0 100%); }
+.sw .name { font: 600 14px/1.2 var(--body); }
+.sw .hex { font: 12px/1.2 var(--mono); color: var(--veil2); }
+.sw .role { font: 12.5px/1.4 var(--body); color: var(--muted0); }
+.ladder { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); border-radius: 12px; overflow: hidden; border: 1px solid var(--layer1); }
+.ladder div { padding: 44px 6px 8px; font: 10.5px/1.3 var(--mono); min-width: 0; overflow: hidden; }
+.ladder div b { display: block; font-weight: 600; }
+
+/* compare */
+.compare { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.mini { border-radius: 12px; overflow: hidden; border: 1px solid var(--layer1); background: var(--base); color: var(--text); min-width: 0; }
+.mini header { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 14px; background: var(--shade); }
+.mini header b { font: 700 16px/1 var(--display); }
+.mini header span { font: 11px/1 var(--mono); color: var(--veil2); }
+.mini pre { font-variant-ligatures: none; margin: 0; padding: 12px 14px 16px; font: 12px/1.7 var(--mono); overflow-x: auto; }
+.mini .strip { display: flex; height: 8px; }
+.mini .strip i { flex: 1; }
+
+/* ANSI terminal cards */
+.tcard pre { margin: 0; padding: 12px 14px 16px; font: 12px/1.65 var(--mono); overflow-x: auto; }
+.ansi16 { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.ansi16 i { height: 14px; display: block; }
+
+/* capture view (?shot): only the workbench, used to make README screenshots */
+.shot .hero, .shot section:not(#workbench), .shot .section-head h2, .shot .section-head p { display: none; }
+.shot .wrap { max-width: 1200px; padding-block: 28px 32px; gap: 0; }
+.shot .section-head .eyebrow { font-size: 15px; letter-spacing: .08em; color: var(--aquamarine); }
+.shot .cursor { animation: none; }
+
+/* rules table */
+.rules { overflow-x: auto; border: 1px solid var(--layer1); border-radius: 12px; }
+.rules table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 620px; }
+.rules th { text-align: left; font: 600 11.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--veil2); padding: 14px 16px; background: var(--shade); }
+.rules td { padding: 11px 16px; border-top: 1px solid var(--layer0); vertical-align: middle; }
+.rules td:first-child { color: var(--muted1); }
+.pill { display: inline-flex; align-items: center; gap: 8px; font: 13px/1 var(--mono); }
+.pill i { width: 14px; height: 14px; border-radius: 4px; display: block; }
+.rules .sample { font-family: var(--mono); font-size: 13.5px; }
+
+/* ports + questions */
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.card { background: var(--shade); border: 1px solid var(--layer1); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.card h3 { font-size: 19px; font-weight: 700; }
+.card p, .card li { color: var(--muted0); font-size: 15px; }
+.card ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.card .accent { color: var(--aquamarine); }
+.foot { color: var(--veil2); font-size: 14px; border-top: 1px solid var(--layer1); padding-top: 24px; }
+.foot a { color: var(--topaz); }
+
+@media (max-width: 980px) {
+  .hero, .duo { grid-template-columns: minmax(0, 1fr); }
+  .swatches { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .compare, .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vsc { grid-template-columns: 46px 180px minmax(0, 1fr); }
+}
+@media (max-width: 680px) {
+  .wrap { gap: 56px; padding-block: 32px 72px; }
+  .vsc { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .activity, .sidebar { display: none; }
+  .swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ladder { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .compare, .cards { grid-template-columns: minmax(0, 1fr); }
+  .note { padding: 20px; }
+  .titlebar .center { padding-right: 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">Concept · Obsidianite family</span>
+      <h1>Obsidianite <span class="facet">Facets</span></h1>
+      <p class="lede">One palette cut six ways. Obsidianite's cyan, pink and violet become twelve named gem accents and a twelve-step neutral ladder, in one light flavor, four dark ones and an AMOLED black. Every app port takes its colors from the same swatch names, so VS Code, your terminal and your notes all match.</p>
+    </div>
+    <div class="flavors" role="group" aria-label="Flavor" id="flavors"></div>
+  </header>
+
+  <section aria-labelledby="bench" id="workbench">
+    <div class="section-head">
+      <span class="eyebrow" id="flavor-label">Flavor · Obsidian</span>
+      <h2 id="bench">The workbench</h2>
+      <p id="flavor-blurb">Pick a flavor above. The page and all three mockups switch to it.</p>
+    </div>
+
+    <div class="window" aria-label="VS Code mockup">
+      <div class="titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="center">palette.ts — facets</span></div>
+      <div class="vsc">
+        <div class="activity" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
+        <div class="sidebar">
+          <div class="h">EXPLORER</div>
+          <div class="row dir">⌄ facets</div>
+          <div class="row ind dir">› extras</div>
+          <div class="row ind dir">⌄ palettes</div>
+          <div class="row ind" style="padding-left:44px">obsidian.json</div>
+          <div class="row ind add" style="padding-left:44px">quartz.json&nbsp;&nbsp;U</div>
+          <div class="row ind sel mod">palette.ts&nbsp;&nbsp;M</div>
+          <div class="row ind">render.ts</div>
+          <div class="row ind">package.json</div>
+          <div class="row ind">README.md</div>
+        </div>
+        <div class="editor">
+          <div class="tabs"><div class="tab on">palette.ts<span class="dot">●</span></div><div class="tab">render.ts</div><div class="tab">obsidian.json</div></div>
+          <div class="crumbs">src › <b>palette.ts</b> › loadPalette</div>
+          <div class="code"><pre id="code"></pre></div>
+          <div class="statusbar"><span class="branch">⎇ main*</span><span class="err">⊗ 1</span><span class="warn">⚠ 2</span><span class="push">Ln 12, Col 34</span><span>TypeScript</span><span id="sb-flavor">Facets: Obsidian</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="duo">
+      <div class="window term" aria-label="Terminal mockup">
+        <div class="titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="center">fish — ~/code/facets</span></div>
+        <pre id="term"></pre>
+      </div>
+      <div class="window" aria-label="Obsidian note mockup">
+        <div class="titlebar"><span class="dots"><i></i><i></i><i></i></span><span class="center">Facets / Palette notes.md</span></div>
+        <article class="note">
+          <h3 class="n1">Palette notes</h3>
+          <div class="tags"><span class="tag">#themes</span><span class="tag todo">#todo</span><span class="tag idea">#ideas</span></div>
+          <p>Every flavor keeps <strong>the same twelve accent names</strong>, so a port only says <em>which swatch</em> goes where, never a raw hex. Accents use <code>oklch()</code> lightness steps, so <mark>contrast stays even</mark> from flavor to flavor.</p>
+          <h3 class="n2">Ports to build</h3>
+          <ul>
+            <li class="done"><span class="box done"></span><span>VS Code, six flavors</span></li>
+            <li class="done"><span class="box done"></span><span>Ghostty, iTerm2, Terminal.app</span></li>
+            <li><span class="box"></span><span>fish theme + Starship palette</span></li>
+            <li><span class="box"></span><span>Obsidian CSS snippet (back where it started)</span></li>
+          </ul>
+          <blockquote>Obsidian is volcanic glass. Cut it and you get faces with different light.</blockquote>
+          <p>Source: <a href="https://github.com/bennyxguo/Obsidian-Obsidianite">Obsidianite by Benny Guo</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="pal">
+    <div class="section-head">
+      <span class="eyebrow">Palette</span>
+      <h2 id="pal">Twelve gems, twelve neutrals</h2>
+      <p>Each accent keeps the hue of an Obsidianite color. Each flavor sets its own lightness and saturation, so every accent stays readable on that flavor's background.</p>
+    </div>
+    <div class="swatches" id="swatches"></div>
+    <div class="ladder" id="ladder"></div>
+  </section>
+
+  <section aria-labelledby="cmp">
+    <div class="section-head">
+      <span class="eyebrow">Side by side</span>
+      <h2 id="cmp">Six flavors, same code</h2>
+      <p>The same snippet in every flavor. The strip under each name shows all twelve accents in order.</p>
+    </div>
+    <div class="compare" id="compare"></div>
+  </section>
+
+  <section aria-labelledby="term-h">
+    <div class="section-head">
+      <span class="eyebrow">Terminals</span>
+      <h2 id="term-h">The 16 terminal colors, per flavor</h2>
+      <p>These are the exact colors the Ghostty, iTerm2, Terminal.app and VS Code terminal themes use. Programs that print ANSI colors (git, ls, test runners) look like this. The top row of swatches is normal, the bottom row is bright.</p>
+    </div>
+    <div class="compare" id="terms"></div>
+  </section>
+
+  <section aria-labelledby="rules-h">
+    <div class="section-head">
+      <span class="eyebrow">Style guide</span>
+      <h2 id="rules-h">Which swatch does what</h2>
+      <p>Every port follows this table. It's what keeps ten different apps looking like one theme.</p>
+    </div>
+    <div class="rules"><table><thead><tr><th>Role</th><th>Swatch</th><th>In code</th><th>In UI</th></tr></thead><tbody id="rules"></tbody></table></div>
+  </section>
+
+  <section aria-labelledby="next">
+    <div class="section-head">
+      <span class="eyebrow">Plan</span>
+      <h2 id="next">What ships</h2>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>Ports</h3><ul><li>VS Code: six Facets themes next to Obsidianite and Obsidianite AMOLED</li><li>Ghostty, iTerm2, macOS Terminal</li><li>fish theme files and a Starship <span class="accent">[palettes.facets_*]</span> block</li><li>bat / delta, Obsidian CSS snippet</li></ul></div>
+      <div class="card"><h3>Built from one file</h3><p><span class="accent">palettes/facets.json</span> plus <span class="accent">npm run build</span> generates every port and this page's colors. To change a color, edit one value and every app picks it up on the next build.</p></div>
+      <div class="card"><h3>Decided</h3><ul><li>Ships in the same repo and extension as Obsidianite 1.x</li><li>Obsidian stays vivid; Snowflake is its pastel twin</li><li>Jet is the AMOLED flavor</li></ul></div>
+    </div>
+    <p class="foot">Palette calculated in OKLCH from the hues in Obsidianite's CSS. Obsidian and Snowflake keep the original <code style="font-family:var(--mono)">#100e17</code> background. Inspired by <a href="https://github.com/bennyxguo/Obsidian-Obsidianite">Obsidianite</a>; built as an original palette for the shd0w Obsidianite themes.</p>
+  </section>
+</div>
+
+<script src="facets.js"></script>
+<script>
+const F = window.FACETS;
+const P = Object.fromEntries(Object.entries(F.flavors).map(([k, v]) => [k, v.colors]));
+
+const FLAVORS = [
+  { id: "quartz", name: "Quartz", tag: "light", blurb: "Quartz is the light flavor. Accents are darkened so they're readable on a pale lavender background." },
+  { id: "smoke", name: "Smoke", tag: "dark · soft", blurb: "Smoke is the softest dark: a lifted purple-grey with powdery pastels. Easy on the eyes in a bright room." },
+  { id: "onyx", name: "Onyx", tag: "dark · medium", blurb: "Onyx sits in the middle: a deeper base with pastel accents that still read clearly." },
+  { id: "snowflake", name: "Snowflake", tag: "dark · pastel", blurb: "Snowflake is Obsidian made pastel: the same #100e17 background, with the soft accents of Smoke and Onyx. Named after snowflake obsidian, the speckled variety." },
+  { id: "obsidian", name: "Obsidian", tag: "dark · vivid", blurb: "Obsidian keeps Obsidianite's original #100e17 background and its electric cyan and pink. It's the closest to the theme you use today." },
+  { id: "jet", name: "Jet", tag: "AMOLED · vivid", blurb: "Jet is the AMOLED flavor: Obsidian's vivid accents on pure black, with only the faintest purple in panels and borders. Made for OLED screens." },
+];
+const ACCENTS = [
+  ["garnet", "Errors, deletions"], ["tourmaline", "Keywords, H2 rule"], ["kunzite", "Decorators, escapes"],
+  ["amethyst", "Parameters, italics"], ["iolite", "Built-ins"], ["sapphire", "Functions"],
+  ["topaz", "Properties, links"], ["aquamarine", "Accent, operators, H1"], ["jade", "Strings"],
+  ["peridot", "Additions, success"], ["citrine", "Types, warnings"], ["carnelian", "Numbers, constants"],
+];
+const NEUTRALS = ["text","muted1","muted0","veil2","veil1","veil0","layer2","layer1","layer0","base","shade","abyss"];
+
+// ⟦class|text⟧ markup → spans
+const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const mark = s => esc(s).replace(/⟦([\w-]+)\|(.*?)⟧/g, (_, c, t) => `<span class="${c}">${t}</span>`);
+
+const CODE = [
+  "⟦k|import⟧ ⟦pu|{⟧ ⟦v|readFile⟧ ⟦pu|}⟧ ⟦k|from⟧ ⟦s|\"node:fs/promises\"⟧⟦pu|;⟧",
+  "",
+  "⟦c|// One palette, six flavors.⟧",
+  "⟦k|type⟧ ⟦t|Flavor⟧ ⟦o|=⟧ ⟦s|\"quartz\"⟧ ⟦o||⟧ ⟦s|\"smoke\"⟧ ⟦o||⟧ ⟦s|\"onyx\"⟧ ⟦o||⟧ ⟦s|\"snowflake\"⟧ ⟦o||⟧ ⟦s|\"obsidian\"⟧ ⟦o||⟧ ⟦s|\"jet\"⟧⟦pu|;⟧",
+  "",
+  "⟦d|@cached⟧⟦pu|()⟧",
+  "⟦k|export async function⟧ ⟦f|loadPalette⟧⟦pu|(⟧⟦p|flavor⟧⟦pu|:⟧ ⟦t|Flavor⟧⟦pu|,⟧ ⟦p|depth⟧ ⟦o|=⟧ ⟦n|12⟧⟦pu|) {⟧",
+  "  ⟦k|const⟧ ⟦v|raw⟧ ⟦o|=⟧ ⟦k|await⟧ ⟦f|readFile⟧⟦pu|(⟧⟦s|`./palettes/⟧⟦o|${⟧⟦p|flavor⟧⟦o|}⟧⟦s|.json`⟧⟦pu|,⟧ ⟦s|\"utf8\"⟧⟦pu|);⟧",
+  "  ⟦k|const⟧ ⟦v|swatches⟧ ⟦o|=⟧ ⟦b|JSON⟧⟦pu|.⟧⟦f|parse⟧⟦pu|(⟧⟦v|raw⟧⟦pu|)⟧ ⟦k|as⟧ ⟦t|Record⟧⟦pu|<⟧⟦b|string⟧⟦pu|,⟧ ⟦b|string⟧⟦pu|>;⟧",
+  "  ⟦k|if⟧ ⟦pu|(⟧⟦o|!⟧⟦v|swatches⟧⟦pu|.⟧⟦pr|base⟧⟦pu|)⟧ ⟦k|throw new⟧ ⟦t|Error⟧⟦pu|(⟧⟦s|\"missing base⟧⟦e|\\n⟧⟦s|\"⟧⟦pu|);⟧",
+  "",
+  "  ⟦k|return⟧ ⟦pu|{ ...⟧⟦v|swatches⟧⟦pu|,⟧ ⟦pr|depth⟧⟦pu|:⟧ ⟦sel-txt|⟦p|depth⟧ ⟦o|*⟧ ⟦n|1.5⟧⟧⟦pu|,⟧ ⟦pr|dark⟧⟦pu|:⟧ ⟦p|flavor⟧ ⟦o|!==⟧ ⟦s|\"quartz\"⟧ ⟦pu|};⟧",
+  "⟦pu|}⟧",
+  "",
+  "⟦k|const⟧ ⟦v|night⟧ ⟦o|=⟧ ⟦f|loadPalette⟧⟦pu|(⟧⟦squig|⟦s|\"basalt\"⟧⟧⟦pu|);⟧ ⟦hint|Promise<Palette>⟧",
+];
+// nested markup: resolve inner first
+function markNested(s) { let prev; s = esc(s); do { prev = s; s = s.replace(/⟦([\w-]+)\|([^⟦⟧]*)⟧/g, (_, c, t) => `<span class="${c}">${t}</span>`); } while (s !== prev); return s; }
+
+document.getElementById("code").innerHTML = CODE.map((l, i) =>
+  `<div class="ln${i === 11 ? " cur" : ""}"><span class="no">${i + 1}</span><span>${markNested(l) || " "}</span></div>`).join("");
+
+const TERM = [
+  "⟦aquamarine|~/code/facets⟧ ⟦veil1|on⟧ ⟦amethyst|⎇ main⟧ ⟦garnet|[!?]⟧ ⟦veil1|via⟧ ⟦peridot|⬢ v22.11⟧",
+  "⟦peridot|❯⟧ ⟦sapphire|git⟧ ⟦topaz|status⟧ ⟦amethyst|--short⟧",
+  "⟦citrine| M⟧ src/palette.ts",
+  "⟦peridot|A ⟧ palettes/quartz.json",
+  "⟦garnet| D⟧ palettes/old.json",
+  "⟦veil0|??⟧ extras/starship.toml",
+  "",
+  "⟦aquamarine|~/code/facets⟧ ⟦veil1|on⟧ ⟦amethyst|⎇ main⟧ ⟦garnet|[!?]⟧",
+  "⟦peridot|❯⟧ ⟦sapphire|ls⟧ ⟦topaz|palettes/⟧ ⟦kunzite|>⟧ ⟦topaz|list.txt⟧",
+  "⟦peridot|❯⟧ ⟦sapphire|cat⟧ ⟦topaz|list.txt⟧ ⟦aquamarine||⟧ ⟦sapphire|grep⟧ ⟦jade|\"onyx\"⟧",
+  "onyx.json",
+  "",
+  "⟦aquamarine|~/code/facets⟧ ⟦veil1|on⟧ ⟦amethyst|⎇ main⟧ ⟦garnet|[!?]⟧ ⟦veil1|took⟧ ⟦citrine|2s⟧",
+  "⟦peridot|❯⟧ ⟦sapphire|npm⟧ ⟦topaz|run build⟧",
+  "Built 6 flavors, 32 files ⟦peridot|✓⟧",
+  "",
+  "⟦aquamarine|~/code/facets⟧ ⟦veil1|on⟧ ⟦amethyst|⎇ main⟧",
+  "⟦garnet|❯⟧ ⟦garnet|gti⟧ ⟦topaz|push⟧⟦veil0| --follow-tags⟧⟦cursor|⟧",
+];
+const termColor = c => ["k","f","s","n","t","p","pr","c","o","pu","v","d","e","b","l","cursor"].includes(c) ? c : null;
+document.getElementById("term").innerHTML = TERM.map(l => esc(l).replace(/⟦([\w-]+)\|(.*?)⟧/g,
+  (_, c, t) => termColor(c) ? `<span class="${c}">${t}</span>` : `<span style="color:var(--${c})">${t}</span>`)).join("\n");
+
+// Swatches + ladder for the active flavor
+function renderPalette(id) {
+  const p = P[id];
+  document.getElementById("swatches").innerHTML = ACCENTS.map(([n, role]) =>
+    `<div class="sw"><div class="chip" style="background:${p[n]}"></div><div class="name">${n}</div><div class="hex">${p[n]}</div><div class="role">${role}</div></div>`).join("");
+  const dark = id !== "quartz";
+  document.getElementById("ladder").innerHTML = NEUTRALS.map((n, i) => {
+    const fg = (dark ? i < 4 : i > 5) ? p.base : p.text;
+    return `<div style="background:${p[n]};color:${fg}"><b>${n}</b>${p[n]}</div>`;
+  }).join("");
+}
+
+// Side-by-side minis (each card scopes its own variables)
+const MINI = [CODE[2], CODE[3], CODE[6], CODE[7].replace("`./palettes/", "`./").replace(", ⟦s|\"utf8\"⟧", ""), CODE[11].replace(" ⟦pr|dark⟧⟦pu|:⟧ ⟦p|flavor⟧ ⟦o|!==⟧ ⟦s|\"quartz\"⟧", ""), CODE[12]];
+document.getElementById("compare").innerHTML = FLAVORS.map(f => {
+  const p = P[f.id];
+  const vars = Object.entries(p).map(([k, v]) => `--${k}:${v}`).join(";");
+  return `<div class="mini" style="${vars}"><header><b>${f.name}</b><span>${f.tag}</span></header>
+    <div class="strip">${ACCENTS.map(([n]) => `<i style="background:${p[n]}"></i>`).join("")}</div>
+    <pre>${MINI.map(markNested).join("\n")}</pre></div>`;
+}).join("");
+
+// Terminal cards: real ANSI palettes from the build
+const ANSI_ORDER = ["black","red","green","yellow","blue","magenta","cyan","white"];
+const cap = s => s[0].toUpperCase() + s.slice(1);
+const TSAMPLE = [
+  "⟦cyan|~/code/facets⟧ ⟦magenta|⎇ main⟧ ⟦red|[!?]⟧ ⟦green|⬢ v22⟧",
+  "⟦green|❯⟧ ⟦blue|git⟧ log --oneline -3",
+  "⟦yellow|069ca98⟧ ⟦cyan|(HEAD -> ⟧⟦green|main⟧⟦cyan|)⟧ Release 1.1.0",
+  "⟦yellow|400d0f3⟧ ⟦red|(tag: 1.0.1)⟧ Add icon",
+  "⟦green|❯⟧ ⟦blue|npm⟧ test",
+  " ⟦green|✓⟧ palette ⟦brightBlack|(12 ms)⟧",
+  " ⟦red|✗⟧ contrast ⟦brightBlack|quartz 4.4 < 4.5⟧",
+  " ⟦brightYellow|⚠⟧ ⟦brightBlue|1 snapshot updated⟧",
+  "⟦brightMagenta|❯⟧ ⟦brightCyan|ls⟧  ⟦blue|build⟧  ⟦blue|docs⟧  ⟦brightWhite|package.json⟧",
+];
+document.getElementById("terms").innerHTML = Object.entries(F.flavors).map(([id, f]) => {
+  const a = f.ansi, p = f.colors;
+  const body = TSAMPLE.map(l => esc(l).replace(/⟦(\w+)\|(.*?)⟧/g, (_, c, t) => `<span style="color:${a[c]}">${t}</span>`)).join("\n");
+  const row = names => names.map(n => `<i style="background:${a[n]}" title="${n} ${a[n]}"></i>`).join("");
+  return `<div class="mini tcard" style="background:${p.base};color:${p.text};border-color:${p.layer1}">
+    <header style="background:${p.shade}"><b style="color:${p.text}">${f.name}</b><span style="color:${p.veil2}">${f.type === "light" ? "light" : id === "jet" ? "AMOLED" : "dark"}</span></header>
+    <div class="ansi16">${row(ANSI_ORDER)}${row(ANSI_ORDER.map(n => "bright" + cap(n)))}</div>
+    <pre>${body}</pre></div>`;
+}).join("");
+
+// Style guide rows
+const RULES = [
+  ["Keywords, storage", "tourmaline", "⟦k|export async function⟧", "Modified tab dot, H2 underline"],
+  ["Functions, methods", "sapphire", "⟦f|loadPalette⟧⟦pu|()⟧", "Folders in trees"],
+  ["Strings", "jade", "⟦s|\"utf8\"⟧", "—"],
+  ["Numbers, constants", "carnelian", "⟦n|1.5⟧", "—"],
+  ["Types, classes", "citrine", "⟦t|Record⟧", "Warnings, modified files"],
+  ["Parameters", "amethyst", "⟦p|flavor⟧", "Italic text in Markdown"],
+  ["Properties, object keys", "topaz", "⟦pr|depth⟧", "Links, info"],
+  ["Operators, accent", "aquamarine", "⟦o|=> !== |⟧", "Cursor, active tab, focus ring, H1"],
+  ["Built-ins", "iolite", "⟦b|JSON string⟧", "—"],
+  ["Decorators, escapes", "kunzite", "⟦d|@cached⟧ ⟦e|\\n⟧", "Bold gradient end"],
+  ["Errors, deletions", "garnet", "⟦squig|⟦s|\"basalt\"⟧⟧", "Errors, removed lines"],
+  ["Additions, success", "peridot", "⟦peridot-c|+ quartz.json⟧", "Added files, passing tests"],
+  ["Comments", "veil1", "⟦c|// four flavors⟧", "Inactive text"],
+];
+document.getElementById("rules").innerHTML = RULES.map(([role, sw, code, ui]) =>
+  `<tr><td>${role}</td><td><span class="pill"><i style="background:var(--${sw})"></i>${sw}</span></td><td class="sample">${markNested(code).replace('class="peridot-c"', 'style="color:var(--peridot)"')}</td><td>${ui}</td></tr>`).join("");
+
+// Flavor switcher
+const box = document.getElementById("flavors");
+box.innerHTML = FLAVORS.map(f => {
+  const p = P[f.id];
+  return `<button type="button" class="flavor-btn" id="flv-${f.id}" data-id="${f.id}" aria-pressed="false">
+    <span class="gem" style="background:linear-gradient(135deg, ${p.base} 0 34%, ${p.aquamarine} 34% 58%, ${p.tourmaline} 58% 78%, ${p.amethyst} 78%)"></span>
+    <span>${f.name}<small>${f.tag} · ${p.base}</small></span></button>`;
+}).join("");
+
+function apply(id) {
+  const p = P[id]; const f = FLAVORS.find(x => x.id === id);
+  const root = document.documentElement;
+  for (const [k, v] of Object.entries(p)) root.style.setProperty(`--${k}`, v);
+  root.style.colorScheme = id === "quartz" ? "light" : "dark";
+  box.querySelectorAll(".flavor-btn").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.id === id)));
+  document.getElementById("flavor-label").textContent = root.classList.contains("shot") ? `Obsidianite Facets · ${f.name}` : `Flavor · ${f.name}`;
+  document.getElementById("flavor-blurb").textContent = f.blurb;
+  document.getElementById("sb-flavor").textContent = `Facets: ${f.name}`;
+  renderPalette(id);
+  try { localStorage.setItem("facets-flavor", id); } catch (e) {}
+}
+box.addEventListener("click", e => {
+  const b = e.target.closest(".flavor-btn"); if (!b) return;
+  apply(b.dataset.id);
+  try { history.replaceState(null, "", "#" + b.dataset.id); } catch (err) {}
+});
+// #snowflake, #jet ... open the page on that flavor (links from the README use this)
+const fromHash = () => { const h = location.hash.slice(1).toLowerCase(); return P[h] ? h : null; };
+window.addEventListener("hashchange", () => { const h = fromHash(); if (h) apply(h); });
+const params = new URLSearchParams(location.search);
+if (params.has("shot")) document.documentElement.classList.add("shot");
+let start = fromHash() || (P[params.get("flavor")] ? params.get("flavor") : null);
+if (!start) { start = "obsidian"; try { const st = localStorage.getItem("facets-flavor"); if (st && P[st]) start = st; } catch (e) {} }
+apply(start);
+</script>
+
+</body>
+</html>

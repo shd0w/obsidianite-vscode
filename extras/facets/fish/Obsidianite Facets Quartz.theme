@@ -1,0 +1,37 @@
+# name: 'Obsidianite Facets Quartz'
+# preferred_background: f7f5fe
+# Generated from palettes/facets.json. Install: copy to ~/.config/fish/themes/, then run
+# fish_config theme save "Obsidianite Facets Quartz"
+
+fish_color_normal 2e2d34
+fish_color_command 486cbd
+fish_color_keyword c12474
+fish_color_param 047aa6
+fish_color_option 7c5bb2
+fish_color_quote 05714c
+fish_color_redirection 955399
+fish_color_end 077d94
+fish_color_operator 077d94
+fish_color_escape 955399
+fish_color_error c8234e
+fish_color_comment 8a8795 --italics
+fish_color_autosuggestion 9f9cab
+fish_color_valid_path --underline
+fish_color_cwd 077d94
+fish_color_cwd_root c8234e
+fish_color_user c12474
+fish_color_host 486cbd
+fish_color_host_remote 9e6002
+fish_color_status c8234e
+fish_color_cancel c8234e --reverse
+fish_color_selection --background=d5d2e2
+fish_color_search_match --background=d5d2e2
+fish_color_history_current --bold
+fish_pager_color_progress 8a8795
+fish_pager_color_prefix 077d94
+fish_pager_color_completion 2e2d34
+fish_pager_color_description 8a8795
+fish_pager_color_selected_background --background=d5d2e2
+fish_pager_color_selected_completion 2e2d34
+fish_pager_color_selected_prefix 077d94
+fish_pager_color_selected_description 5b5962

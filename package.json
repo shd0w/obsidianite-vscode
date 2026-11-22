@@ -1,17 +1,33 @@
 {
   "name": "obsidianite-vscode",
-  "displayName": "Obsidianite",
-  "description": "Faithful port of the Obsidianite Obsidian theme for VS Code, with an AMOLED variant",
-  "version": "1.1.0",
+  "displayName": "Obsidianite Theme",
+  "description": "Dark, light and AMOLED themes inspired by Obsidian's Obsidianite: purple-black backgrounds with cyan, pink and pastel accents. Matching terminal themes included.",
+  "version": "1.2.0",
   "publisher": "shd0w",
   "license": "MIT",
   "keywords": [
     "theme",
+    "color-theme",
     "dark",
+    "dark theme",
+    "light",
+    "light theme",
+    "black",
+    "amoled",
+    "oled",
+    "purple",
+    "pink",
+    "cyan",
+    "pastel",
+    "neon",
+    "minimal",
+    "clean",
+    "night",
+    "contrast",
     "obsidian",
     "obsidianite",
-    "amoled",
-    "color-theme"
+    "facets",
+    "terminal"
   ],
   "galleryBanner": {
     "color": "#100e17",
@@ -31,6 +47,10 @@
   "categories": [
     "Themes"
   ],
+  "scripts": {
+    "build": "node build/build.mjs",
+    "package": "npm run build && npx @vscode/vsce package --no-dependencies"
+  },
   "contributes": {
     "themes": [
       {
@@ -42,6 +62,36 @@
         "label": "Obsidianite AMOLED",
         "uiTheme": "vs-dark",
         "path": "./themes/Obsidianite-amoled-color-theme.json"
+      },
+      {
+        "label": "Obsidianite Facets Quartz",
+        "uiTheme": "vs",
+        "path": "./themes/facets/obsidianite-facets-quartz-color-theme.json"
+      },
+      {
+        "label": "Obsidianite Facets Smoke",
+        "uiTheme": "vs-dark",
+        "path": "./themes/facets/obsidianite-facets-smoke-color-theme.json"
+      },
+      {
+        "label": "Obsidianite Facets Onyx",
+        "uiTheme": "vs-dark",
+        "path": "./themes/facets/obsidianite-facets-onyx-color-theme.json"
+      },
+      {
+        "label": "Obsidianite Facets Snowflake",
+        "uiTheme": "vs-dark",
+        "path": "./themes/facets/obsidianite-facets-snowflake-color-theme.json"
+      },
+      {
+        "label": "Obsidianite Facets Obsidian",
+        "uiTheme": "vs-dark",
+        "path": "./themes/facets/obsidianite-facets-obsidian-color-theme.json"
+      },
+      {
+        "label": "Obsidianite Facets Jet",
+        "uiTheme": "vs-dark",
+        "path": "./themes/facets/obsidianite-facets-jet-color-theme.json"
       }
     ]
   }

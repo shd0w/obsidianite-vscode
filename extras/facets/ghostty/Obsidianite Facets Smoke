@@ -1,0 +1,24 @@
+# Obsidianite Facets Smoke for Ghostty. Generated from palettes/facets.json, do not edit by hand.
+background = #2f2b3b
+foreground = #dedce9
+cursor-color = #81cbde
+cursor-text = #2f2b3b
+selection-background = #565265
+selection-foreground = #dedce9
+split-divider-color = #494556
+palette = 0=#494556
+palette = 1=#fe9ea9
+palette = 2=#a6dc93
+palette = 3=#e7c77e
+palette = 4=#a3bef3
+palette = 5=#c5b2ec
+palette = 6=#81cbde
+palette = 7=#b1afbc
+palette = 8=#6d697c
+palette = 9=#fdadcb
+palette = 10=#b6e2a6
+palette = 11=#ebd195
+palette = 12=#b4caf5
+palette = 13=#f3cef4
+palette = 14=#98d4e4
+palette = 15=#dedce9

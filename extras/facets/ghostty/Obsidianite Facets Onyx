@@ -1,0 +1,24 @@
+# Obsidianite Facets Onyx for Ghostty. Generated from palettes/facets.json, do not edit by hand.
+background = #1d1928
+foreground = #dedce8
+cursor-color = #71c9e0
+cursor-text = #1d1928
+selection-background = #434050
+selection-foreground = #dedce8
+split-divider-color = #363342
+palette = 0=#363342
+palette = 1=#ff99a4
+palette = 2=#9ddc85
+palette = 3=#e8c26b
+palette = 4=#9cbaf8
+palette = 5=#c3adf0
+palette = 6=#71c9e0
+palette = 7=#aba9b5
+palette = 8=#615e6f
+palette = 9=#ffa7c9
+palette = 10=#afe29b
+palette = 11=#eccd86
+palette = 12=#aec6f9
+palette = 13=#f3c9f5
+palette = 14=#8bd3e6
+palette = 15=#dedce8

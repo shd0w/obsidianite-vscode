@@ -1,0 +1,24 @@
+# Obsidianite Facets Obsidian for Ghostty. Generated from palettes/facets.json, do not edit by hand.
+background = #100e17
+foreground = #dbd9e4
+cursor-color = #2ac1e1
+cursor-text = #100e17
+selection-background = #363342
+selection-foreground = #dbd9e4
+split-divider-color = #2b2836
+palette = 0=#2b2836
+palette = 1=#fe8292
+palette = 2=#7cd557
+palette = 3=#e7b210
+palette = 4=#85acfe
+palette = 5=#bb9af7
+palette = 6=#2ac1e1
+palette = 7=#a5a3ae
+palette = 8=#595565
+palette = 9=#fe94bf
+palette = 10=#94dd75
+palette = 11=#ebc03b
+palette = 12=#9bbbfe
+palette = 13=#f1b7f4
+palette = 14=#50cce6
+palette = 15=#dbd9e4

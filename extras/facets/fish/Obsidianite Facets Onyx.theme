@@ -1,0 +1,37 @@
+# name: 'Obsidianite Facets Onyx'
+# preferred_background: 1d1928
+# Generated from palettes/facets.json. Install: copy to ~/.config/fish/themes/, then run
+# fish_config theme save "Obsidianite Facets Onyx"
+
+fish_color_normal dedce8
+fish_color_command 9cbaf8
+fish_color_keyword ff94bd
+fish_color_param 84c4e7
+fish_color_option c3adf0
+fish_color_quote 71d1a5
+fish_color_redirection f0bdf3
+fish_color_end 71c9e0
+fish_color_operator 71c9e0
+fish_color_escape f0bdf3
+fish_color_error ff99a4
+fish_color_comment 757184 --italics
+fish_color_autosuggestion 615e6f
+fish_color_valid_path --underline
+fish_color_cwd 71c9e0
+fish_color_cwd_root ff99a4
+fish_color_user ff94bd
+fish_color_host 9cbaf8
+fish_color_host_remote efbc88
+fish_color_status ff99a4
+fish_color_cancel ff99a4 --reverse
+fish_color_selection --background=363342
+fish_color_search_match --background=363342
+fish_color_history_current --bold
+fish_pager_color_progress 757184
+fish_pager_color_prefix 71c9e0
+fish_pager_color_completion dedce8
+fish_pager_color_description 757184
+fish_pager_color_selected_background --background=363342
+fish_pager_color_selected_completion dedce8
+fish_pager_color_selected_prefix 71c9e0
+fish_pager_color_selected_description aba9b5

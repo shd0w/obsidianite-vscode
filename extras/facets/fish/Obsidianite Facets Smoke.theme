@@ -1,0 +1,37 @@
+# name: 'Obsidianite Facets Smoke'
+# preferred_background: 2f2b3b
+# Generated from palettes/facets.json. Install: copy to ~/.config/fish/themes/, then run
+# fish_config theme save "Obsidianite Facets Smoke"
+
+fish_color_normal dedce9
+fish_color_command a3bef3
+fish_color_keyword fd9bc0
+fish_color_param 90c6e4
+fish_color_option c5b2ec
+fish_color_quote 81d2ab
+fish_color_redirection f0c3f1
+fish_color_end 81cbde
+fish_color_operator 81cbde
+fish_color_escape f0c3f1
+fish_color_error fe9ea9
+fish_color_comment 817d91 --italics
+fish_color_autosuggestion 6d697c
+fish_color_valid_path --underline
+fish_color_cwd 81cbde
+fish_color_cwd_root fe9ea9
+fish_color_user fd9bc0
+fish_color_host a3bef3
+fish_color_host_remote edc195
+fish_color_status fe9ea9
+fish_color_cancel fe9ea9 --reverse
+fish_color_selection --background=494556
+fish_color_search_match --background=494556
+fish_color_history_current --bold
+fish_pager_color_progress 817d91
+fish_pager_color_prefix 81cbde
+fish_pager_color_completion dedce9
+fish_pager_color_description 817d91
+fish_pager_color_selected_background --background=494556
+fish_pager_color_selected_completion dedce9
+fish_pager_color_selected_prefix 81cbde
+fish_pager_color_selected_description b1afbc

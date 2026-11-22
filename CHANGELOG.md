@@ -1,5 +1,52 @@
 # Changelog
 
+## 1.2.0
+
+### New: Obsidianite Facets
+A family of six themes built from one named palette, added next to Obsidianite and Obsidianite AMOLED (both unchanged).
+
+| Flavor | Type | Look |
+| --- | --- | --- |
+| **Quartz** | light | Pale lavender base, deepened accents |
+| **Smoke** | dark | Lifted purple-grey, soft pastels |
+| **Onyx** | dark | Deeper base, pastel accents |
+| **Snowflake** | dark | Obsidian's `#100e17` base with pastel accents |
+| **Obsidian** | dark | The original `#100e17` with vivid cyan and pink |
+| **Jet** | AMOLED | Obsidian's vivid accents on pure black |
+
+- **Twelve named accents**: garnet, tourmaline, kunzite, amethyst, iolite, sapphire, topaz, aquamarine, jade, peridot, citrine and carnelian. Each keeps the hue of an Obsidianite color.
+- **Twelve neutrals**, from `text` to `abyss`, all tinted toward Obsidianite's purple.
+- **Readable everywhere:** every accent meets readable contrast on its background. The tightest is Quartz's aquamarine at 4.4:1.
+- **Same roles in every flavor:**
+  - keywords: tourmaline
+  - functions: sapphire
+  - strings: jade
+  - numbers: carnelian
+  - types: citrine
+  - parameters: amethyst italic
+  - properties: topaz
+  - operators and the accent color: aquamarine
+- **Full UI theming** in all six themes, including semantic highlighting, bracket pairs, sticky scroll, inlay hints, diff and merge views, testing icons and the integrated terminal.
+
+### Terminal and shell themes for every flavor
+Find them in `extras/facets/`:
+- **Ghostty**
+- **iTerm2** (`.itermcolors`)
+- **macOS Terminal** (`.terminal`)
+- **fish** (`.theme`, for `fish_config theme save`)
+- **Starship**: palette blocks you select with `palette = "obsidianite_facets_<flavor>"`
+
+### Live preview page
+- `docs/index.html` is an interactive page showing every flavor: the VS Code editor, a fish and Starship terminal, an Obsidian note, the 16 terminal colors, and the swatch reference. It's served with GitHub Pages from `docs/`. Links like `#snowflake` open it on that flavor.
+- README now opens with an animated GIF of all six flavors and a grid of clickable flavor thumbnails that open the live preview (`docs/screenshots/`).
+
+### Marketplace listing
+- Display name is now **Obsidianite Theme**. The description and keywords are rewritten around how people search for themes: dark, light, AMOLED, black, purple, pink, pastel, Obsidian.
+
+### One palette file
+- `palettes/facets.json` is the source of truth. `npm run build` regenerates every port and registers the themes in `package.json`.
+- Terminal.app profiles need macOS to build. Everything else builds anywhere with Node.
+
 ## 1.1.0
 
 ### Syntax highlighting
