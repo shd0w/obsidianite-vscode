@@ -1,18 +1,36 @@
 {
   "name": "obsidianite-vscode",
   "displayName": "Obsidianite",
-  "description": "Faithful Obsidianite theme port for VSCode",
-  "version": "1.0.1",
+  "description": "Faithful port of the Obsidianite Obsidian theme for VS Code, with an AMOLED variant",
+  "version": "1.1.0",
   "publisher": "shd0w",
+  "license": "MIT",
+  "keywords": [
+    "theme",
+    "dark",
+    "obsidian",
+    "obsidianite",
+    "amoled",
+    "color-theme"
+  ],
+  "galleryBanner": {
+    "color": "#100e17",
+    "theme": "dark"
+  },
   "icon": "icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/shd0w/obsidianite-vscode"
   },
+  "bugs": {
+    "url": "https://github.com/shd0w/obsidianite-vscode/issues"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
-  "categories": ["Themes"],
+  "categories": [
+    "Themes"
+  ],
   "contributes": {
     "themes": [
       {

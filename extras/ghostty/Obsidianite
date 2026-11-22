@@ -1,0 +1,36 @@
+# Obsidianite — Ghostty port of the Obsidian theme by bennyxguo
+# https://github.com/bennyxguo/Obsidian-Obsidianite
+
+background = #100e17
+foreground = #bebebe
+
+cursor-color = #0fb6d6
+cursor-text = #100e17
+
+selection-background = #263d92
+selection-foreground = #ffffff
+
+# black
+palette = 0=#191621
+palette = 8=#6272a4
+# red (Obsidianite pink accent)
+palette = 1=#f4569d
+palette = 9=#ff7aae
+# green
+palette = 2=#45e0a2
+palette = 10=#50fa7b
+# yellow
+palette = 3=#ffc93c
+palette = 11=#ffdc82
+# blue
+palette = 4=#7aa2f7
+palette = 12=#87c2fd
+# magenta (italic / bold-gradient purples)
+palette = 5=#bb9af7
+palette = 13=#dcb9fc
+# cyan (Obsidianite cyan accent)
+palette = 6=#0fb6d6
+palette = 14=#3dd7fb
+# white
+palette = 7=#bebebe
+palette = 15=#f8f8f2

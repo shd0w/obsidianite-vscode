@@ -1,1 +1,7 @@
+.git/**
+.gitignore
 PUBLICATION.md
+extras/**
+*.vsix
+.DS_Store
+create_icon.py
