@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.1
+- **Credits:** new `CREDITS.md` with what comes from where, plus the MIT license texts:
+  - **Obsidianite** by Benny Guo: the original theme
+  - **Dracula**: the syntax colors in Obsidianite's code blocks
+  - **Monokai**: the property color
+  - **Catppuccin**: the inspiration for organizing Facets
+- The README and the preview page credit them too, and say this is an independent, unofficial project.
+
 ## 1.2.0
 
 ### New: Obsidianite Facets

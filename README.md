@@ -1,6 +1,6 @@
 # Obsidianite VS Code Theme
 
-A faithful port of the Obsidianite theme from Obsidian to VS Code, inspired by the original Obsidianite theme created by Benny Guo. It also includes **Obsidianite Facets**: six more flavors, from light to pure-black AMOLED, plus matching terminal themes.
+A faithful port of [Obsidianite](https://github.com/bennyxguo/Obsidian-Obsidianite), the Obsidian theme by Benny Guo, to VS Code. It also includes **Obsidianite Facets**: six more flavors, from light to pure-black AMOLED, plus matching terminal themes.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/shd0w/obsidianite-vscode/main/docs/screenshots/facets-flavors.gif" alt="Obsidianite Facets: the editor, terminal and a note cycling through Quartz, Smoke, Onyx, Snowflake, Obsidian and Jet" width="100%">
@@ -52,7 +52,7 @@ A faithful port of the Obsidianite theme from Obsidian to VS Code, inspired by t
 Or from a terminal:
 
 ```bash
-code --install-extension obsidianite-vscode-1.2.0.vsix
+code --install-extension obsidianite-vscode-1.2.1.vsix
 ```
 
 ## Variants
@@ -140,4 +140,10 @@ See [CHANGELOG.md](CHANGELOG.md).
 
 ## Credits
 
-Original Obsidian theme by Benny Guo: https://github.com/bennyxguo/Obsidian-Obsidianite
+This is an independent, unofficial port. Thanks to:
+
+- **[Obsidianite](https://github.com/bennyxguo/Obsidian-Obsidianite)** by **Benny Guo** (MIT): the Obsidian theme this extension ports. Its backgrounds, cyan and pink accents, and note styling are the base of every theme here.
+- **[Dracula](https://draculatheme.com)** (MIT): the syntax colors Obsidianite uses in its code blocks, which the original themes here keep.
+- **[Catppuccin](https://github.com/catppuccin/catppuccin)** (MIT): the inspiration for how Obsidianite Facets is organized: one palette, several flavors, named swatches and a style guide. Facets doesn't use Catppuccin's colors, names or code.
+
+Not affiliated with Obsidian, Obsidianite, Dracula or Catppuccin. See [CREDITS.md](CREDITS.md) for what comes from where, and the full license texts.
