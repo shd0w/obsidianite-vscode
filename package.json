@@ -2,7 +2,7 @@
   "name": "obsidianite-vscode",
   "displayName": "Obsidianite Theme",
   "description": "Dark, light and AMOLED themes inspired by Obsidian's Obsidianite: purple-black backgrounds with cyan, pink and pastel accents. Matching terminal themes included.",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "publisher": "shd0w",
   "license": "MIT",
   "keywords": [

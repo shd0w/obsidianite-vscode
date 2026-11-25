@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.2
+- **New: Parrot OS style Starship prompt** in `extras/starship/parrot-prompt.toml`. It is a two-line prompt, `┌─[user@host]─[~/path]` / `└──╼ $`, with a `[✗]─` block that only appears after a failed command and git info on the right. The colors come from Parrot's default bash prompt and are set in hex, so the prompt looks the same on any terminal theme.
+- The README explains how to install it.
+- No changes to the VS Code themes.
+
 ## 1.2.1
 - **Credits:** new `CREDITS.md` with what comes from where, plus the MIT license texts:
   - **Obsidianite** by Benny Guo: the original theme
