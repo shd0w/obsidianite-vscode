@@ -1,0 +1,61 @@
+# Parrot OS style two-line prompt for Starship.
+#
+#   ┌─[user@host]─[~/path]
+#   └──╼ $
+#
+# After a failed command a [✗]─ block appears at the start of the first line:
+#
+#   ┌─[✗]─[user@host]─[~/path]
+#   └──╼ $
+#
+# Install: copy this file to ~/.config/starship.toml (back up yours first),
+# or merge the sections below into your own config.
+# Colors are hex, so the prompt looks the same on any terminal theme.
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+format = '''[┌─](parrot_red)$status[\[](parrot_red)$username[@](bold parrot_yellow)$hostname[\]─\[](parrot_red)$directory[\]](parrot_red)$line_break[└──╼](parrot_red) $character'''
+
+# Git and language info on the right, so the left side stays like Parrot's.
+right_format = '''$git_branch$git_status$all'''
+
+palette = "parrot"
+
+[username]
+show_always = true
+format = "[$user]($style)"
+style_user = "parrot_white"
+style_root = "bold parrot_red"
+
+[hostname]
+ssh_only = false
+format = "[$hostname]($style)"
+style = "bold parrot_cyan"
+disabled = false
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style)"
+style = "parrot_green"
+truncation_length = 8
+truncate_to_repo = false
+
+[status]
+disabled = false
+format = "[\\[](parrot_red)[✗](parrot_white)[\\]─](parrot_red)"
+
+[character]
+disabled = false
+format = "$symbol "
+success_symbol = "[\\$](bold parrot_yellow)"
+error_symbol = "[\\$](bold parrot_yellow)"
+
+# Colors taken from Parrot's default bash prompt.
+# Softer pastel option: red #ffb0a6, yellow #ecd386, cyan #71dcd6, green #b4e4a4.
+[palettes.parrot]
+parrot_red = "#ff7c70"
+parrot_yellow = "#f2c50e"
+parrot_cyan = "#00fff0"
+parrot_green = "#6ed245"
+parrot_white = "#e0dce8"

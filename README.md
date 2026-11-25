@@ -124,6 +124,17 @@ Every Facets flavor ships for each tool in [`extras/facets/`](extras/facets):
 | fish | `fish/` | Copy the `.theme` file to `~/.config/fish/themes/`, then run `fish_config theme save "Obsidianite Facets Obsidian"`. |
 | Starship | `starship/palettes.toml` | Paste a palette block into `~/.config/starship.toml` and set `palette = "obsidianite_facets_obsidian"`. Then you can use swatch names in styles, e.g. `style = "bold aquamarine"`. |
 
+### Parrot OS style Starship prompt
+
+[`extras/starship/parrot-prompt.toml`](extras/starship/parrot-prompt.toml) is a two-line Starship prompt in the style of Parrot OS:
+
+```text
+┌─[✗]─[user@host]─[~/labs/htb]
+└──╼ $
+```
+
+The `[✗]─` block only appears after a failed command. Git info goes on the right. The colors are set in hex, so the prompt looks the same on any terminal theme. To use it, back up your `~/.config/starship.toml` and copy the file over it, or merge its sections into your own config.
+
 ## Building
 
 The Facets themes and every terminal port are generated from [`palettes/facets.json`](palettes/facets.json). To change a color, edit it there and rebuild:
